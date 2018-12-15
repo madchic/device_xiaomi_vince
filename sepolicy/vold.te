@@ -1,2 +1,2 @@
-allow vold persist_file:dir { open read ioctl };
+allow vold persist_file:dir { read search open ioctl };
 allow vold logd:dir { getattr open read };

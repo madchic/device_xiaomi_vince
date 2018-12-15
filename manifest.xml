@@ -73,15 +73,6 @@
         </interface>
     </hal>
     <hal format="hidl">
-        <name>com.qualcomm.qti.ant</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IAntHci</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
         <name>com.qualcomm.qti.bluetooth_audio</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -402,6 +393,24 @@
         </interface>
     </hal>
     <hal format="hidl">
+        <name>vendor.lineage.livedisplay</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IColor</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
+        <name>vendor.lineage.power</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>ILineagePower</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
+    <hal format="hidl">
         <name>vendor.qti.gnss</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -416,15 +425,6 @@
         <version>1.0</version>
         <interface>
             <name>IFmHci</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.health</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IHealth</name>
             <instance>default</instance>
         </interface>
     </hal>
@@ -465,7 +465,7 @@
             <instance>slot2</instance>
         </interface>
     </hal>
-    <hal format="hidl">
+     <hal format="hidl">
         <name>vendor.qti.hardware.radio.atcmdfwd</name>
         <transport>hwbinder</transport>
         <version>1.0</version>

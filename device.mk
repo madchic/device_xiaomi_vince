@@ -19,12 +19,9 @@ $(call inherit-product, vendor/xiaomi/vince/vince-vendor.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_n_mr1.mk)
 
 # Overlays
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
-
-# Vendor Properties Overrides
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.vendor.override.security_patch=$(PLATFORM_SECURITY_PATCH) \
-    ro.vendor.override.build_display=$(BUILD_ID)
+DEVICE_PACKAGE_OVERLAYS += \
+    $(LOCAL_PATH)/overlay \
+    $(LOCAL_PATH)/overlay-lineage
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
@@ -61,7 +58,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.usb.accessory.xml \
     frameworks/native/data/etc/android.hardware.usb.host.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.usb.host.xml \
-    frameworks/native/data/etc/android.hardware.vulkan.compute-0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.compute-0.xml \
     frameworks/native/data/etc/android.hardware.vulkan.level-0.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.level-0.xml \
     frameworks/native/data/etc/android.hardware.vulkan.version-1_0_3.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.vulkan.version-1_0_3.xml \
     frameworks/native/data/etc/android.hardware.wifi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.wifi.xml \
@@ -134,6 +130,7 @@ PRODUCT_PACKAGES += \
     camera.device@3.2-impl \
     camera.msm8953 \
     libmm-qcamera \
+    Snap \
     vendor.qti.hardware.camera.device@1.0 \
     vendor.qti.hardware.camera.device@1.0_vendor
 
@@ -160,14 +157,13 @@ PRODUCT_PACKAGES += \
     memtrack.msm8953 \
     libdisplayconfig \
     liboverlay \
-    libqdMetaData \
     libqdMetaData.system \
     libgenlock \
     libtinyxml \
     vendor.display.config@1.1 \
     vendor.display.config@1.1_vendor
 
-# Doze
+# Doze mode
 PRODUCT_PACKAGES += \
     XiaomiDoze
 
@@ -200,7 +196,8 @@ PRODUCT_PACKAGES += \
     libgnsspps
 
 PRODUCT_PACKAGES += \
-    android.hardware.gnss@1.0-impl-qti
+    android.hardware.gnss@1.0-impl-qti \
+    android.hardware.gnss@1.0-service-qti
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/etc/flp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/flp.conf \
@@ -217,7 +214,9 @@ PRODUCT_PACKAGES += \
 # Health HAL
 PRODUCT_PACKAGES += \
     android.hardware.health@1.0-impl \
-    android.hardware.health@1.0-service
+    android.hardware.health@1.0-convert \
+    android.hardware.health@1.0-service \
+    android.hardware.health@1.0
 
 # HIDL
 PRODUCT_PACKAGES += \
@@ -261,6 +260,10 @@ PRODUCT_PACKAGES += \
     android.hardware.light@2.0-impl \
     android.hardware.light@2.0-service \
     lights.msm8953
+
+# LiveDisplay native
+PRODUCT_PACKAGES += \
+    vendor.lineage.livedisplay@1.0-service-sdm
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -386,4 +389,3 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:system/etc/firmware/wlan/prima/WCNSS_cfg.dat \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini
-
